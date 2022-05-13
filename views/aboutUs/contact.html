@@ -131,30 +131,30 @@ media="only screen and (max-width: 750px)";
 <script src="/node_modules/blueimp-md5/js/md5.js"></script>
 <script src="https://www.layuicdn.com/layui/layui.js"></script>
 <script>
-  //点击按钮提交表单
-  $("#btn").click(function () {
-      var formData = $("#register_form").serializeArray();
-      var obj = transformFormData(formData)
-      obj.password = md5(obj.password)
+//   //点击按钮提交表单
+//   $("#btn").click(function () {
+//       var formData = $("#register_form").serializeArray();
+//       var obj = transformFormData(formData)
+//       obj.password = md5(obj.password)
 
-      $.ajax({
-          type: "POST",
-          url: "/contact",
-          data: JSON.stringify(obj),
-          contentType: "application/json",
-          success: function (res) {
-              if (res.code === 2000) {
-                  layer.msg(res.message, { shade: [0.3, '#393D49'], time: 2000 });
-                  setTimeout(() => {
-                      window.location.href = "/message"
-                  }, 2000);
-              }
-              else {
-                  layer.msg(res.message, { shade: [0.3, '#393D49'], time: 2000 });
-              }
-          }
-      })
-      return false;
-  })
-</script>
+//       $.ajax({
+//           type: "POST",
+//           url: "/contact",
+//           data: JSON.stringify(obj),
+//           contentType: "application/json",
+//           success: function (res) {
+//               if (res.code === 2000) {
+//                   layer.msg(res.message, { shade: [0.3, '#393D49'], time: 2000 });
+//                   setTimeout(() => {
+//                       window.location.href = "/message"
+//                   }, 2000);
+//               }
+//               else {
+//                   layer.msg(res.message, { shade: [0.3, '#393D49'], time: 2000 });
+//               }
+//           }
+//       })
+//       return false;
+//   })
+// </script>
 {{/block}}
