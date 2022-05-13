@@ -1,5 +1,6 @@
 // 引用模板和中间件
 const express = require("express");
+
 // 导入model中的js例如
 
 
@@ -8,10 +9,14 @@ const Test = require("../model/test")
 
 
 // 挂载中间件
+
+const People = require("../model/people")
+
 const path = require("path")
 const multer = require('multer');
 const mongoose = require("mongoose");
 const moment = require("moment")
+
 const router = express.Router();
 
 // 渲染页面
@@ -31,9 +36,7 @@ router.get("/contact", (req, res) => {
 router.get("/honor", (req, res) => {
     res.render("aboutUs/honor.html")
 })
-router.get("/joinus", (req, res) => {
-    res.render("aboutUs/joinus.html")
-})
+
 router.get("/milestone", (req, res) => {
     res.render("aboutUs/milestone.html")
 })
@@ -56,16 +59,23 @@ router.get('/cases', async (req, res) => {
 router.get("/autodon", (req, res) => {
     res.render("CT/autodon.html")
 })
+
+
+router.get("/joinus", async (req, res) => {
+    let result = await People.find();
+    // console.log(result)
+    res.render("aboutUs/joinus.html", { person: result })
+})
+
+
 router.get("/dubhewer", (req, res) => {
     res.render("CT/dubhewer.html")
 })
 router.get("/pirox", (req, res) => {
     res.render("CT/pirox.html")
 })
-// news
-router.get("/news", (req, res) => {
-    res.render("newsCenter/news.html")
-})
+
+// newsCenter
 router.get("/exhibition", (req, res) => {
     res.render("newsCenter/exhibition.html")
 })
@@ -78,9 +88,21 @@ router.get("/technology", (req, res) => {
     res.render("technology/technology.html")
 })
 
-// router.get("/login", (req, res) => {
-//     res.render("login.html")
-// })
+// news
+// newsCenter里面的news文件夹下面的子页面
+router.get("/news", (req, res) => {
+    res.render("zhaoxueying/news.html")
+})
+router.get("/news/437.html", (req, res) => {
+    res.render("zhaoxueying/437.html")
+})
+router.get("/news/page2", (req, res) => {
+    res.render("zhaoxueying/page2.html")
+})
+router.get("/news/qingyezhuangfang", (req, res) => {
+    res.render("zhaoxueying/qiyezhuangfang.html")
+})
+
 
 // router.post("/contact", async (req, res, next) => {
 //     try {
@@ -109,9 +131,5 @@ router.get("/technology", (req, res) => {
 //         next(err)
 //     }
 // })
-
-
-
-
 
 module.exports = router;
